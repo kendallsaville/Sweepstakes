@@ -144,7 +144,13 @@ function createCasinoCard(casino) {
                         <p class="casino-tagline">${casino.tagline}</p>
                     </div>
                     <div class="rating-section">
-                        <div class="rating-label">Expert Review</div>
+                        <div class="rating-label">
+                            Sweepsy Expert Score
+                            <span class="tooltip-trigger">
+                                i
+                                <span class="tooltip-content">Sweepsy scores are objectively determined by our editorial team. Welcome bonuses, payout speeds, game variety, minimum purchase requirements, and customer support quality are some of the factors that make up Sweepsy's expert score.</span>
+                            </span>
+                        </div>
                         <div class="rating-badge">
                             <span class="star-icon">★</span>
                             <span>${casino.rating}</span>
@@ -230,7 +236,7 @@ function createCasinoCard(casino) {
                         <span><span class="activity-highlight">${casino.recentPlayers}</span> players in the past ${casino.timeframe}</span>
                     </div>
                     <div class="action-buttons">
-                        <button class="btn btn-secondary">More details</button>
+                        <button class="btn btn-secondary">Read Review</button>
                         <button class="btn btn-primary">Visit Site</button>
                     </div>
                 </div>
