@@ -222,7 +222,7 @@ function createCasinoCard(casino) {
                         <div class="stat-value">${casino.stats.payout}</div>
                     </div>
                     <div class="stat">
-                        <div class="stat-label">Year Founded</div>
+                        <div class="stat-label">Year Launched</div>
                         <div class="stat-value">${casino.stats.yearFounded}</div>
                     </div>
                     <div class="stat">
@@ -239,13 +239,13 @@ function createCasinoCard(casino) {
 
                 <!-- Footer -->
                 <div class="card-footer">
-                    <div class="recent-activity">
-                        <span class="activity-icon">🔥</span>
-                        <span><span class="activity-highlight">${casino.recentPlayers}</span> players in the past ${casino.timeframe}</span>
-                    </div>
                     <div class="action-buttons">
                         <button class="btn btn-primary">Visit Site</button>
                         <button class="btn btn-secondary">Read Review</button>
+                    </div>
+                    <div class="recent-activity">
+                        <span class="activity-icon">🔥</span>
+                        <span><span class="activity-highlight">${casino.recentPlayers}</span> players in the past ${casino.timeframe}</span>
                     </div>
                 </div>
             </div>
