@@ -244,8 +244,8 @@ function createCasinoCard(casino) {
                         <span><span class="activity-highlight">${casino.recentPlayers}</span> players in the past ${casino.timeframe}</span>
                     </div>
                     <div class="action-buttons">
-                        <button class="btn btn-secondary">Read Review</button>
                         <button class="btn btn-primary">Visit Site</button>
+                        <button class="btn btn-secondary">Read Review</button>
                     </div>
                 </div>
             </div>

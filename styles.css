@@ -90,6 +90,17 @@ body {
     background: var(--card-color, #667eea);
 }
 
+/* Colored Bottom Border */
+.casino-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--card-color, #667eea), var(--card-color-dark, #764ba2));
+}
+
 /* Card Content */
 .casino-content {
     padding: 24px;
@@ -662,7 +673,7 @@ body {
     }
 
     .action-buttons {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 8px;
     }
 
