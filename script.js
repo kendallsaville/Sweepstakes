@@ -21,6 +21,7 @@ const casinos = [
         logoText: "👑",
         tagline: "Best for new player bonuses",
         rating: 4.8,
+        videoUrl: "#",
         author: {
             name: "Alexander Korsager",
             initials: "AK",
@@ -57,6 +58,7 @@ const casinos = [
         logoText: "💎",
         tagline: "Best for crypto enthusiasts",
         rating: 4.7,
+        videoUrl: "#",
         author: {
             name: "Sarah Chen",
             initials: "SC",
@@ -95,6 +97,7 @@ const casinos = [
         logoText: "⚡",
         tagline: "Best for slot enthusiasts",
         rating: 4.6,
+        videoUrl: "#",
         author: {
             name: "Michael Torres",
             initials: "MT",
@@ -137,10 +140,9 @@ function createCasinoCard(casino) {
             <div class="casino-content">
                 <!-- Title with Logo & Rank -->
                 <div class="casino-title-row">
-                    <div class="rank-badge">#${casino.rank}</div>
                     <div class="casino-logo">${casino.logoText}</div>
                     <div class="casino-title">
-                        <h2 class="casino-name">${casino.name}</h2>
+                        <h3 class="casino-name"><span class="rank-number">${casino.rank}.</span> ${casino.name}</h3>
                         <p class="casino-tagline">${casino.tagline}</p>
                     </div>
                     <div class="rating-section">
@@ -170,6 +172,12 @@ function createCasinoCard(casino) {
                             </div>
                             <div class="author-meta">${casino.author.title} · ${casino.author.reviews} reviews</div>
                         </div>
+                        <a href="${casino.videoUrl}" class="video-review-link" title="Watch video review">
+                            <svg class="video-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 5v14l11-7L8 5z" fill="currentColor"/>
+                            </svg>
+                            Video Review
+                        </a>
                     </div>
                     <p class="quote-text">
                         ${casino.review}

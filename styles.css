@@ -95,21 +95,6 @@ body {
     padding: 24px;
 }
 
-/* Rank Badge - Moved to not overlap */
-.rank-badge {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    background: var(--text-primary);
-    color: white;
-    font-weight: 700;
-    font-size: 16px;
-    padding: 6px 12px;
-    border-radius: 6px;
-    box-shadow: var(--shadow-sm);
-    z-index: 10;
-}
-
 /* Title Section - Cleaner Layout */
 .casino-title-row {
     display: grid;
@@ -119,7 +104,6 @@ body {
     margin-bottom: 20px;
     padding-bottom: 20px;
     border-bottom: 1px solid var(--border);
-    padding-top: 32px;
 }
 
 .casino-logo {
@@ -145,6 +129,11 @@ body {
     font-weight: 600;
     letter-spacing: -0.02em;
     margin-bottom: 4px;
+}
+
+.rank-number {
+    color: var(--text-secondary);
+    font-weight: 700;
 }
 
 .casino-tagline {
@@ -306,6 +295,29 @@ body {
 .author-meta {
     font-size: 12px;
     color: var(--text-light);
+}
+
+.video-review-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    margin-left: auto;
+}
+
+.video-review-link:hover {
+    background: rgba(255, 56, 92, 0.08);
+    color: var(--primary-dark);
+}
+
+.video-icon {
+    flex-shrink: 0;
 }
 
 .quote-text {
@@ -568,17 +580,9 @@ body {
         padding: 20px 16px;
     }
 
-    .rank-badge {
-        top: 12px;
-        left: 12px;
-        font-size: 14px;
-        padding: 5px 10px;
-    }
-
     .casino-title-row {
         grid-template-columns: auto 1fr;
         gap: 12px;
-        padding-top: 28px;
         padding-bottom: 16px;
     }
 
