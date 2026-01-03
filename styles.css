@@ -357,6 +357,230 @@ body {
     font-style: normal;
 }
 
+/* New Games Section */
+.new-games-section {
+    background: linear-gradient(135deg, #f6f8fb 0%, #ffffff 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.section-header h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.new-badge {
+    background: linear-gradient(135deg, var(--card-color, #667eea), var(--card-color-dark, #764ba2));
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+}
+
+.games-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.game-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: white;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.game-item:hover {
+    border-color: var(--card-color, #667eea);
+    box-shadow: var(--shadow-sm);
+    transform: translateX(4px);
+}
+
+.game-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.game-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.game-rtp {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.play-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--card-color, #667eea), var(--card-color-dark, #764ba2));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: transform 0.2s ease;
+}
+
+.game-item:hover .play-icon {
+    transform: scale(1.1);
+}
+
+/* Promotion Section */
+.promotion-section {
+    background: linear-gradient(135deg, var(--card-color, #667eea) 0%, var(--card-color-dark, #764ba2) 100%);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    margin-bottom: 20px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.promotion-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.promo-header {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 12px;
+}
+
+.promo-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+.promo-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    color: white;
+}
+
+.promo-subtitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.promo-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+}
+
+.prize-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+}
+
+.prize-item {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    text-align: center;
+}
+
+.prize-place {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.prize-amount {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+}
+
+.promo-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+}
+
+.promo-deadline {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+}
+
+.promo-cta {
+    background: white;
+    color: var(--card-color, #667eea);
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.promo-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.promo-cta:active {
+    transform: translateY(0);
+}
+
 /* Bonus Highlight */
 .bonus-highlight {
     background: linear-gradient(135deg, #FFF9F0, #FFF4E6);
@@ -694,6 +918,69 @@ body {
         background: var(--bg-gray);
         border-radius: var(--radius-sm);
         font-size: 11px;
+    }
+
+    /* New Games Mobile */
+    .new-games-section {
+        padding: 16px;
+    }
+
+    .section-header h4 {
+        font-size: 15px;
+    }
+
+    .game-item {
+        padding: 10px 12px;
+    }
+
+    .game-name {
+        font-size: 13px;
+    }
+
+    .play-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 11px;
+    }
+
+    /* Promotion Mobile */
+    .promotion-section {
+        padding: 20px;
+    }
+
+    .promo-title {
+        font-size: 18px;
+    }
+
+    .promo-subtitle {
+        font-size: 14px;
+    }
+
+    .promo-description {
+        font-size: 13px;
+    }
+
+    .prize-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .prize-item {
+        padding: 12px;
+    }
+
+    .prize-amount {
+        font-size: 16px;
+    }
+
+    .promo-footer {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+    }
+
+    .promo-cta {
+        width: 100%;
     }
 }
 

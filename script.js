@@ -48,6 +48,22 @@ const casinos = [
             yearFounded: "2023",
             banking: ["S", "E", "+6"]
         },
+        newGames: [
+            { name: "Tasty Bonanza 10,000", rtp: "94.80%" },
+            { name: "Jewel Boom Super Drop", rtp: "94.45%" },
+            { name: "Cleopatra Wild", rtp: "95.15%" }
+        ],
+        promotion: {
+            title: "GC Winners Weekly",
+            subtitle: "$50,000 Prize Pool",
+            description: "Play your favorite games and win big! Top 100 players share the prize pool every week.",
+            prizes: [
+                { place: "1st", amount: "$10,000" },
+                { place: "2nd", amount: "$5,000" },
+                { place: "3rd", amount: "$2,500" }
+            ],
+            endDate: "Ends Sunday 11:59 PM EST"
+        },
         recentPlayers: 11,
         timeframe: "24 hours"
     },
@@ -87,6 +103,11 @@ const casinos = [
             yearFounded: "2022",
             banking: ["C", "B", "+4"]
         },
+        newGames: [
+            { name: "Tasty Bonanza 10,000", rtp: "94.80%" },
+            { name: "Jewel Boom Super Drop", rtp: "94.45%" },
+            { name: "Cleopatra Wild", rtp: "95.15%" }
+        ],
         recentPlayers: 28,
         timeframe: "24 hours"
     },
@@ -125,6 +146,17 @@ const casinos = [
             payout: "2-3 days",
             yearFounded: "2020",
             banking: ["V", "P", "+5"]
+        },
+        promotion: {
+            title: "Slot Tournament Spectacular",
+            subtitle: "$25,000 Weekly Prizes",
+            description: "Spin to win! Compete against other players for your share of massive weekly prizes.",
+            prizes: [
+                { place: "1st", amount: "$5,000" },
+                { place: "2nd", amount: "$2,500" },
+                { place: "3rd", amount: "$1,000" }
+            ],
+            endDate: "Ends Friday 11:59 PM EST"
         },
         recentPlayers: 19,
         timeframe: "24 hours"
@@ -184,6 +216,51 @@ function createCasinoCard(casino) {
                         <span class="read-more">Show more</span>
                     </p>
                 </div>
+
+                ${casino.newGames ? `
+                <!-- New Games Section -->
+                <div class="new-games-section">
+                    <div class="section-header">
+                        <span class="new-badge">NEW</span>
+                        <h4>New Games This Week</h4>
+                    </div>
+                    <div class="games-list">
+                        ${casino.newGames.map(game => `
+                            <div class="game-item">
+                                <div class="game-info">
+                                    <span class="game-name">${game.name}</span>
+                                    <span class="game-rtp">RTP: ${game.rtp}</span>
+                                </div>
+                                <div class="play-icon">▶</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                ` : ''}
+
+                ${casino.promotion ? `
+                <!-- Promotion Section -->
+                <div class="promotion-section">
+                    <div class="promo-header">
+                        <div class="promo-badge">🎁 ACTIVE PROMO</div>
+                        <h4 class="promo-title">${casino.promotion.title}</h4>
+                        <div class="promo-subtitle">${casino.promotion.subtitle}</div>
+                    </div>
+                    <p class="promo-description">${casino.promotion.description}</p>
+                    <div class="prize-grid">
+                        ${casino.promotion.prizes.map(prize => `
+                            <div class="prize-item">
+                                <div class="prize-place">${prize.place}</div>
+                                <div class="prize-amount">${prize.amount}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="promo-footer">
+                        <span class="promo-deadline">⏰ ${casino.promotion.endDate}</span>
+                        <button class="promo-cta">Join Now</button>
+                    </div>
+                </div>
+                ` : ''}
 
                 <!-- Bonus -->
                 <div class="bonus-highlight">
