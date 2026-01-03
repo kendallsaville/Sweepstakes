@@ -261,11 +261,14 @@ body {
     position: relative;
 }
 
-.bottom-line-title {
-    font-size: 18px;
+.our-take-title {
+    font-size: 16px;
     font-weight: 700;
     color: var(--text-primary);
-    margin: 0 0 12px 0;
+    margin: 0;
+    padding-right: 16px;
+    border-right: 2px solid var(--border);
+    margin-right: 16px;
 }
 
 .quote-icon {
@@ -914,9 +917,10 @@ body {
         padding: 16px;
     }
 
-    .bottom-line-title {
-        font-size: 16px;
-        margin-bottom: 10px;
+    .our-take-title {
+        font-size: 14px;
+        padding-right: 12px;
+        margin-right: 12px;
     }
 
     .quote-icon {

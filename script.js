@@ -224,9 +224,9 @@ function createCasinoCard(casino) {
 
                 <!-- Author Quote -->
                 <div class="author-quote-section">
-                    <h4 class="bottom-line-title">Bottom Line</h4>
                     <div class="quote-icon">"</div>
                     <div class="author-header">
+                        <h4 class="our-take-title">Our Take</h4>
                         <div class="author-photo">${casino.author.initials}</div>
                         <div class="author-info">
                             <div class="author-name">
