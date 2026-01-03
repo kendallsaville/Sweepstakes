@@ -431,7 +431,7 @@ body {
 .game-info {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
     flex: 1;
 }
 
@@ -446,6 +446,13 @@ body {
     font-size: 12px;
     color: var(--text-secondary);
     font-weight: 500;
+}
+
+.game-description {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin: 0;
 }
 
 /* Promotion Section */
@@ -940,6 +947,15 @@ body {
 
     .game-name {
         font-size: 13px;
+    }
+
+    .game-rtp {
+        font-size: 11px;
+    }
+
+    .game-description {
+        font-size: 12px;
+        line-height: 1.4;
     }
 
     /* Promotion Mobile */
