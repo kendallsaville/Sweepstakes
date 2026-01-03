@@ -257,17 +257,18 @@ function createCasinoCard(casino) {
                         <span class="new-badge">NEW</span>
                         <h4>New Games This Week</h4>
                     </div>
-                    <div class="games-list">
-                        ${casino.newGames.map(game => `
-                            <div class="game-item">
-                                <img src="${game.image}" alt="${game.name}" class="game-thumbnail" loading="lazy">
-                                <div class="game-title-info">
-                                    <span class="game-name">${game.name}</span>
-                                    <span class="game-rtp">RTP: ${game.rtp}</span>
+                    <div class="games-grid">
+                        ${casino.newGames.map((game, index) => `
+                            <div class="game-card" data-game-index="${index}">
+                                <div class="game-image-wrapper">
+                                    <img src="${game.image}" alt="${game.name}" class="game-image" loading="lazy">
                                 </div>
-                                <div class="game-description-wrapper">
-                                    <p class="game-description">${game.description}</p>
-                                    <span class="show-more-game">Show more</span>
+                                <div class="game-info-compact">
+                                    <h5 class="game-title">${game.name}</h5>
+                                    <span class="game-rtp-compact">RTP: ${game.rtp}</span>
+                                </div>
+                                <div class="game-description-hidden">
+                                    <p>${game.description}</p>
                                 </div>
                             </div>
                         `).join('')}
@@ -391,21 +392,10 @@ function renderCasinos() {
         });
     });
 
-    // Add click handlers for game "Show more" links
-    document.querySelectorAll('.show-more-game').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            const wrapper = this.closest('.game-description-wrapper');
-            if (wrapper) {
-                if (this.textContent === 'Show more') {
-                    wrapper.classList.add('expanded');
-                    this.textContent = 'Show less';
-                } else {
-                    wrapper.classList.remove('expanded');
-                    this.textContent = 'Show more';
-                }
-            }
+    // Add click handlers for game cards to expand/collapse descriptions
+    document.querySelectorAll('.game-card').forEach(card => {
+        card.addEventListener('click', function() {
+            this.classList.toggle('expanded');
         });
     });
 
