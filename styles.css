@@ -867,6 +867,86 @@ body {
     margin: var(--space-3) 0 0 0;
 }
 
+.game-play-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin-top: var(--space-3);
+    padding: var(--space-2) var(--space-4);
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    transition: all var(--duration-fast) var(--ease-out-expo);
+}
+
+.game-play-link:hover {
+    background: var(--primary-dark);
+    transform: translateX(2px);
+}
+
+/* ============================================
+   TOP SECTIONS - Games & Promos for January
+   ============================================ */
+
+.top-games-section,
+.top-promos-section {
+    margin-top: var(--space-12);
+    margin-bottom: var(--space-12);
+}
+
+.promos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-6);
+}
+
+.promotion-card {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.promotion-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.promo-casino-badge {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+}
+
+.promo-casino-logo {
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.promo-casino-name {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+}
+
 /* ============================================
    PROMOTION SECTION - Eye-catching gradient
    ============================================ */

@@ -344,8 +344,6 @@ function createCasinoCard(casino) {
                     </p>
                 </div>
 
-                ${casino.newGames ? createNewGamesSection(casino.newGames) : ''}
-                ${casino.promotion ? createPromotionSection(casino.promotion) : ''}
 
                 <!-- Welcome Bonus -->
                 <div class="bonus-highlight">
@@ -424,17 +422,27 @@ function createCasinoCard(casino) {
 }
 
 /**
- * Create new games section
+ * Render Top Games for January section
  */
-function createNewGamesSection(games) {
-    return `
-        <div class="new-games-section">
-            <div class="section-header">
-                <span class="new-badge">NEW</span>
-                <h4>New Games This Week</h4>
-            </div>
+function renderTopGames() {
+    const container = document.getElementById('topGamesSection');
+    if (!container) return;
+
+    // Collect all games from all casinos
+    const allGames = [];
+    casinos.forEach(casino => {
+        if (casino.newGames) {
+            casino.newGames.forEach(game => {
+                allGames.push({ ...game, casinoName: casino.name });
+            });
+        }
+    });
+
+    const gamesHTML = `
+        <section class="top-games-section">
+            <h2 class="section-title">Top Games for January</h2>
             <div class="games-grid">
-                ${games.map((game, index) => `
+                ${allGames.map((game, index) => `
                     <div class="game-card" data-game-index="${index}" role="button" tabindex="0" aria-expanded="false">
                         <div class="game-image-wrapper">
                             <img src="${game.image}" alt="${game.name} slot game preview" class="game-image" loading="lazy">
@@ -450,46 +458,86 @@ function createNewGamesSection(games) {
                         </div>
                         <div class="game-description-hidden">
                             <p>${game.description}</p>
+                            <a href="#" class="game-play-link" data-casino="${game.casinoName}">
+                                Play at ${game.casinoName} →
+                            </a>
                         </div>
                     </div>
                 `).join('')}
             </div>
-        </div>
+        </section>
     `;
+
+    container.innerHTML = gamesHTML;
+
+    // Re-attach game card interactions for this section
+    container.querySelectorAll('.game-card').forEach(card => {
+        card.addEventListener('click', handleGameCardClick);
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleGameCardClick.call(card, e);
+            }
+        });
+    });
 }
 
 /**
- * Create promotion section with glassmorphism effect
+ * Render Top Promos for January section
  */
-function createPromotionSection(promotion) {
-    return `
-        <div class="promotion-section">
-            <div class="promo-header">
-                <div class="promo-badge">
-                    <span aria-hidden="true">${icons.gift}</span>
-                    ACTIVE PROMO
-                </div>
-                <h4 class="promo-title">${promotion.title}</h4>
-                <div class="promo-subtitle">${promotion.subtitle}</div>
-            </div>
-            <p class="promo-description">${promotion.description}</p>
-            <div class="prize-grid">
-                ${promotion.prizes.map(prize => `
-                    <div class="prize-item">
-                        <div class="prize-place">${prize.place}</div>
-                        <div class="prize-amount">${prize.amount}</div>
+function renderTopPromos() {
+    const container = document.getElementById('topPromosSection');
+    if (!container) return;
+
+    // Collect all promotions from all casinos
+    const allPromos = [];
+    casinos.forEach(casino => {
+        if (casino.promotion) {
+            allPromos.push({ ...casino.promotion, casinoName: casino.name, casinoLogo: casino.logoText });
+        }
+    });
+
+    const promosHTML = `
+        <section class="top-promos-section">
+            <h2 class="section-title">Top Promos for January</h2>
+            <div class="promos-grid">
+                ${allPromos.map((promo, index) => `
+                    <div class="promotion-card">
+                        <div class="promo-header">
+                            <div class="promo-casino-badge">
+                                <span class="promo-casino-logo">${promo.casinoLogo}</span>
+                                <span class="promo-casino-name">${promo.casinoName}</span>
+                            </div>
+                            <div class="promo-badge">
+                                <span aria-hidden="true">${icons.gift}</span>
+                                ACTIVE PROMO
+                            </div>
+                        </div>
+                        <h4 class="promo-title">${promo.title}</h4>
+                        <div class="promo-subtitle">${promo.subtitle}</div>
+                        <p class="promo-description">${promo.description}</p>
+                        <div class="prize-grid">
+                            ${promo.prizes.map(prize => `
+                                <div class="prize-item">
+                                    <div class="prize-place">${prize.place}</div>
+                                    <div class="prize-amount">${prize.amount}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="promo-footer">
+                            <span class="promo-deadline">
+                                <span aria-hidden="true">${icons.clock}</span>
+                                ${promo.endDate}
+                            </span>
+                            <button class="promo-cta" data-casino="${promo.casinoName}">Join at ${promo.casinoName}</button>
+                        </div>
                     </div>
                 `).join('')}
             </div>
-            <div class="promo-footer">
-                <span class="promo-deadline">
-                    <span aria-hidden="true">${icons.clock}</span>
-                    ${promotion.endDate}
-                </span>
-                <button class="promo-cta">Join Tournament</button>
-            </div>
-        </div>
+        </section>
     `;
+
+    container.innerHTML = promosHTML;
 }
 
 /**
@@ -735,6 +783,8 @@ function debounce(func, wait) {
  */
 document.addEventListener('DOMContentLoaded', () => {
     renderCasinos();
+    renderTopGames();
+    renderTopPromos();
     initDarkMode();
     initScrollAnimations();
 
