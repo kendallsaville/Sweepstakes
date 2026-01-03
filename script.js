@@ -225,21 +225,23 @@ function createCasinoCard(casino) {
                 <!-- Author Quote -->
                 <div class="author-quote-section">
                     <div class="quote-icon">"</div>
-                    <div class="author-header">
-                        <h4 class="our-take-title">Our Take</h4>
-                        <div class="author-photo">${casino.author.initials}</div>
-                        <div class="author-info">
-                            <div class="author-name">
-                                ${casino.author.verified ? '<span class="verified">✓</span>' : ''}
-                                ${casino.author.name}
+                    <div class="review-header">
+                        <div class="our-take-badge">Our Take</div>
+                        <div class="author-content">
+                            <div class="author-photo">${casino.author.initials}</div>
+                            <div class="author-details">
+                                <div class="author-name">
+                                    ${casino.author.verified ? '<span class="verified">✓</span>' : ''}
+                                    ${casino.author.name}
+                                </div>
+                                <div class="author-meta">${casino.author.title} · ${casino.author.reviews} reviews</div>
                             </div>
-                            <div class="author-meta">${casino.author.title} · ${casino.author.reviews} reviews</div>
                         </div>
-                        <a href="${casino.videoUrl}" class="video-review-link" title="Watch video review">
-                            <svg class="video-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <a href="${casino.videoUrl}" class="video-link" title="Watch video review">
+                            <svg class="video-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M8 5v14l11-7L8 5z" fill="currentColor"/>
                             </svg>
-                            Video Review
+                            <span>Video Review</span>
                         </a>
                     </div>
                     <p class="quote-text">

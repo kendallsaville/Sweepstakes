@@ -251,7 +251,7 @@ body {
     font-size: 16px;
 }
 
-/* Author Quote Section */
+/* Author Quote Section - Redesigned */
 .author-quote-section {
     margin-bottom: 20px;
     background: var(--bg-gray);
@@ -261,88 +261,97 @@ body {
     position: relative;
 }
 
-.our-take-title {
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 0;
-    padding-right: 16px;
-    border-right: 2px solid var(--border);
-    margin-right: 16px;
-}
-
 .quote-icon {
     position: absolute;
     top: 16px;
     left: 16px;
     font-size: 40px;
     color: var(--card-color, #667eea);
-    opacity: 0.15;
+    opacity: 0.12;
     line-height: 1;
 }
 
-.author-header {
+.review-header {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 16px;
     margin-bottom: 14px;
 }
 
+.our-take-badge {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+}
+
+.author-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
 .author-photo {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, var(--card-color, #667eea), var(--card-color-dark, #764ba2));
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 15px;
     flex-shrink: 0;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.author-info {
+.author-details {
     flex: 1;
+    min-width: 0;
 }
 
 .author-name {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
+    color: var(--text-primary);
     display: flex;
     align-items: center;
-    gap: 5px;
-    margin-bottom: 3px;
+    gap: 6px;
+    margin-bottom: 2px;
 }
 
 .verified {
     color: var(--success);
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .author-meta {
-    font-size: 12px;
-    color: var(--text-light);
+    font-size: 13px;
+    color: var(--text-secondary);
 }
 
-.video-review-link {
+.video-link {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 13px;
+    font-size: 14px;
     color: var(--primary);
     text-decoration: none;
-    font-weight: 500;
-    padding: 6px 12px;
-    border-radius: 6px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 8px;
     transition: all 0.2s ease;
-    margin-left: auto;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
-.video-review-link:hover {
-    background: rgba(255, 56, 92, 0.08);
-    color: var(--primary-dark);
+.video-link:hover {
+    background: rgba(255, 56, 92, 0.1);
+    transform: translateX(2px);
 }
 
 .video-icon {
@@ -917,20 +926,48 @@ body {
         padding: 16px;
     }
 
-    .our-take-title {
+    .review-header {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .our-take-badge {
+        font-size: 11px;
+        width: 100%;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .author-content {
+        flex: 1;
+        gap: 10px;
+    }
+
+    .author-photo {
+        width: 40px;
+        height: 40px;
         font-size: 14px;
-        padding-right: 12px;
-        margin-right: 12px;
+    }
+
+    .author-name {
+        font-size: 14px;
+    }
+
+    .author-meta {
+        font-size: 12px;
+    }
+
+    .video-link {
+        font-size: 13px;
+        padding: 6px 12px;
+    }
+
+    .video-link span {
+        display: none;
     }
 
     .quote-icon {
         font-size: 32px;
-    }
-
-    .author-photo {
-        width: 42px;
-        height: 42px;
-        font-size: 14px;
     }
 
     .quote-text {
