@@ -52,19 +52,19 @@ const casinos = [
             {
                 name: "Tasty Bonanza 10,000",
                 rtp: "96.10%",
-                image: "https://images.unsplash.com/photo-1597933534023-8e9a3c3d9b5e?w=200&h=120&fit=crop",
+                image: "https://i.imgur.com/MtepKOZ.jpg",
                 description: "Tasty Bonanza is a candy-themed 6x5 \"Pay Anywhere\" slot from Booming Games with cascading reels, $0.20–$60 bets, 96.10% RTP, and a high-volatility top win of 6,500x. Wins come from 8–12+ matching symbols anywhere on the reels, and free spins are triggered by a Candy Jar collector, can retrigger, and add multiplier symbols."
             },
             {
                 name: "Jewel Boom Super Drop",
                 rtp: "94.45%",
-                image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=200&h=120&fit=crop",
+                image: "https://i.imgur.com/c9zYOJr.jpg",
                 description: "An explosive gem-themed slot featuring cascading wins and progressive multipliers. Match 3+ symbols to trigger the Super Drop feature with increasing win multipliers up to 10x. Medium-high volatility with $0.10–$50 betting range."
             },
             {
                 name: "Cleopatra Wild",
                 rtp: "95.15%",
-                image: "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=200&h=120&fit=crop",
+                image: "https://i.imgur.com/Grsudrt.jpg",
                 description: "Ancient Egypt meets modern slots in this 5x3 classic with 20 paylines. Features expanding wilds, free spins with 3x multipliers, and a top win of 10,000x. Low-medium volatility perfect for extended play sessions with $0.20–$100 bets."
             }
         ],
@@ -161,19 +161,19 @@ const casinos = [
             {
                 name: "Tasty Bonanza 10,000",
                 rtp: "96.10%",
-                image: "https://images.unsplash.com/photo-1597933534023-8e9a3c3d9b5e?w=200&h=120&fit=crop",
+                image: "https://i.imgur.com/MtepKOZ.jpg",
                 description: "Tasty Bonanza is a candy-themed 6x5 \"Pay Anywhere\" slot from Booming Games with cascading reels, $0.20–$60 bets, 96.10% RTP, and a high-volatility top win of 6,500x. Wins come from 8–12+ matching symbols anywhere on the reels, and free spins are triggered by a Candy Jar collector, can retrigger, and add multiplier symbols."
             },
             {
                 name: "Jewel Boom Super Drop",
                 rtp: "94.45%",
-                image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=200&h=120&fit=crop",
+                image: "https://i.imgur.com/c9zYOJr.jpg",
                 description: "An explosive gem-themed slot featuring cascading wins and progressive multipliers. Match 3+ symbols to trigger the Super Drop feature with increasing win multipliers up to 10x. Medium-high volatility with $0.10–$50 betting range."
             },
             {
                 name: "Cleopatra Wild",
                 rtp: "95.15%",
-                image: "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=200&h=120&fit=crop",
+                image: "https://i.imgur.com/Grsudrt.jpg",
                 description: "Ancient Egypt meets modern slots in this 5x3 classic with 20 paylines. Features expanding wilds, free spins with 3x multipliers, and a top win of 10,000x. Low-medium volatility perfect for extended play sessions with $0.20–$100 bets."
             }
         ],
