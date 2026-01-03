@@ -258,10 +258,13 @@ function createCasinoCard(casino) {
                         ${casino.newGames.map(game => `
                             <div class="game-item">
                                 <img src="${game.image}" alt="${game.name}" class="game-thumbnail" loading="lazy">
-                                <div class="game-info">
+                                <div class="game-title-info">
                                     <span class="game-name">${game.name}</span>
                                     <span class="game-rtp">RTP: ${game.rtp}</span>
+                                </div>
+                                <div class="game-description-wrapper">
                                     <p class="game-description">${game.description}</p>
+                                    <span class="show-more-game">Show more</span>
                                 </div>
                             </div>
                         `).join('')}
@@ -379,6 +382,24 @@ function renderCasinos() {
                     this.textContent = 'Show less';
                 } else {
                     quoteText.style.maxHeight = '';
+                    this.textContent = 'Show more';
+                }
+            }
+        });
+    });
+
+    // Add click handlers for game "Show more" links
+    document.querySelectorAll('.show-more-game').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const wrapper = this.closest('.game-description-wrapper');
+            if (wrapper) {
+                if (this.textContent === 'Show more') {
+                    wrapper.classList.add('expanded');
+                    this.textContent = 'Show less';
+                } else {
+                    wrapper.classList.remove('expanded');
                     this.textContent = 'Show more';
                 }
             }

@@ -397,15 +397,15 @@ body {
 }
 
 .game-item {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 80px auto 1fr;
     gap: 12px;
     padding: 12px;
     background: white;
     border-radius: var(--radius-sm);
     border: 1px solid var(--border);
     transition: all 0.2s ease;
-    cursor: pointer;
+    align-items: center;
 }
 
 .game-item:hover {
@@ -419,7 +419,6 @@ body {
     height: 60px;
     border-radius: 6px;
     object-fit: cover;
-    flex-shrink: 0;
     box-shadow: var(--shadow-sm);
     transition: transform 0.2s ease;
 }
@@ -428,11 +427,11 @@ body {
     transform: scale(1.05);
 }
 
-.game-info {
+.game-title-info {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    flex: 1;
+    gap: 4px;
+    min-width: 180px;
 }
 
 .game-name {
@@ -448,11 +447,43 @@ body {
     font-weight: 500;
 }
 
+.game-description-wrapper {
+    position: relative;
+    max-height: 60px;
+    overflow: hidden;
+}
+
+.game-description-wrapper.expanded {
+    max-height: none;
+}
+
 .game-description {
     font-size: 13px;
     line-height: 1.5;
     color: var(--text-secondary);
     margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.game-description-wrapper.expanded .game-description {
+    display: block;
+    -webkit-line-clamp: unset;
+}
+
+.show-more-game {
+    color: var(--card-color, #667eea);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 4px;
+    display: inline-block;
+}
+
+.show-more-game:hover {
+    text-decoration: underline;
 }
 
 /* Promotion Section */
@@ -936,13 +967,18 @@ body {
     }
 
     .game-item {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
         padding: 10px;
         gap: 10px;
     }
 
     .game-thumbnail {
-        width: 70px;
-        height: 52px;
+        display: none;
+    }
+
+    .game-title-info {
+        min-width: unset;
     }
 
     .game-name {
@@ -953,9 +989,19 @@ body {
         font-size: 11px;
     }
 
+    .game-description-wrapper {
+        max-height: none;
+        grid-column: 1;
+    }
+
     .game-description {
         font-size: 12px;
         line-height: 1.4;
+        -webkit-line-clamp: 2;
+    }
+
+    .show-more-game {
+        font-size: 11px;
     }
 
     /* Promotion Mobile */
