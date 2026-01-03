@@ -49,9 +49,9 @@ const casinos = [
             banking: ["S", "E", "+6"]
         },
         newGames: [
-            { name: "Tasty Bonanza 10,000", rtp: "94.80%" },
-            { name: "Jewel Boom Super Drop", rtp: "94.45%" },
-            { name: "Cleopatra Wild", rtp: "95.15%" }
+            { name: "Tasty Bonanza 10,000", rtp: "94.80%", image: "https://images.unsplash.com/photo-1597933534023-8e9a3c3d9b5e?w=200&h=120&fit=crop" },
+            { name: "Jewel Boom Super Drop", rtp: "94.45%", image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=200&h=120&fit=crop" },
+            { name: "Cleopatra Wild", rtp: "95.15%", image: "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=200&h=120&fit=crop" }
         ],
         promotion: {
             title: "GC Winners Weekly",
@@ -104,9 +104,9 @@ const casinos = [
             banking: ["C", "B", "+4"]
         },
         newGames: [
-            { name: "Tasty Bonanza 10,000", rtp: "94.80%" },
-            { name: "Jewel Boom Super Drop", rtp: "94.45%" },
-            { name: "Cleopatra Wild", rtp: "95.15%" }
+            { name: "Tasty Bonanza 10,000", rtp: "94.80%", image: "https://images.unsplash.com/photo-1597933534023-8e9a3c3d9b5e?w=200&h=120&fit=crop" },
+            { name: "Jewel Boom Super Drop", rtp: "94.45%", image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=200&h=120&fit=crop" },
+            { name: "Cleopatra Wild", rtp: "95.15%", image: "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=200&h=120&fit=crop" }
         ],
         recentPlayers: 28,
         timeframe: "24 hours"
@@ -227,11 +227,11 @@ function createCasinoCard(casino) {
                     <div class="games-list">
                         ${casino.newGames.map(game => `
                             <div class="game-item">
+                                <img src="${game.image}" alt="${game.name}" class="game-thumbnail" loading="lazy">
                                 <div class="game-info">
                                     <span class="game-name">${game.name}</span>
                                     <span class="game-rtp">RTP: ${game.rtp}</span>
                                 </div>
-                                <div class="play-icon">▶</div>
                             </div>
                         `).join('')}
                     </div>
