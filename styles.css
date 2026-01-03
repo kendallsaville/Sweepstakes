@@ -261,6 +261,13 @@ body {
     position: relative;
 }
 
+.bottom-line-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 12px 0;
+}
+
 .quote-icon {
     position: absolute;
     top: 16px;
@@ -905,6 +912,11 @@ body {
 
     .author-quote-section {
         padding: 16px;
+    }
+
+    .bottom-line-title {
+        font-size: 16px;
+        margin-bottom: 10px;
     }
 
     .quote-icon {
