@@ -78,6 +78,7 @@ const casinos = [
                 rtp: "96.10%",
                 volatility: "High",
                 provider: "Booming Games",
+                category: "Cascading",
                 image: "https://www.sweepsy.com/wp-content/uploads/2025/12/Bad-Santa-RealPrize.jpg",
                 description: "Tasty Bonanza is a candy-themed 6x5 \"Pay Anywhere\" slot from Booming Games with cascading reels, $0.20-$60 bets, 96.10% RTP, and a high-volatility top win of 6,500x. Wins come from 8-12+ matching symbols anywhere on the reels, and free spins are triggered by a Candy Jar collector."
             },
@@ -86,6 +87,7 @@ const casinos = [
                 rtp: "94.45%",
                 volatility: "Medium-High",
                 provider: "Pragmatic Play",
+                category: "Feature Spins",
                 image: "https://www.sweepsy.com/wp-content/uploads/2025/12/Christmas-Bonanza-Megaways-SweepNext.jpg",
                 description: "An explosive gem-themed slot featuring cascading wins and progressive multipliers. Match 3+ symbols to trigger the Super Drop feature with increasing win multipliers up to 10x."
             },
@@ -94,6 +96,7 @@ const casinos = [
                 rtp: "95.15%",
                 volatility: "Low-Medium",
                 provider: "IGT",
+                category: "Just Released",
                 image: "https://www.sweepsy.com/wp-content/uploads/2025/12/Christmas-fortune-crown-coins.jpg",
                 description: "Ancient Egypt meets modern slots in this 5x3 classic with 20 paylines. Features expanding wilds, free spins with 3x multipliers, and a top win of 10,000x."
             }
@@ -423,17 +426,25 @@ function createCasinoCard(casino) {
 
 /**
  * Render Top Games for January section
+ * Mobile-first horizontal scroll carousel with premium card design
  */
 function renderTopGames() {
     const container = document.getElementById('topGamesSection');
     if (!container) return;
 
-    // Collect all games from all casinos
+    // Collect all games from all casinos with color info
     const allGames = [];
     casinos.forEach(casino => {
         if (casino.newGames) {
+            const colors = rankColors[casino.rank - 1] || rankColors[0];
             casino.newGames.forEach(game => {
-                allGames.push({ ...game, casinoName: casino.name });
+                allGames.push({
+                    ...game,
+                    casinoName: casino.name,
+                    casinoRank: casino.rank,
+                    casinoColor: colors.color,
+                    casinoColorDark: colors.dark
+                });
             });
         }
     });
@@ -441,49 +452,97 @@ function renderTopGames() {
     const gamesHTML = `
         <section class="top-games-section">
             <h2 class="section-title">Top Games for January</h2>
-            <div class="games-grid">
-                ${allGames.map((game, index) => `
-                    <div class="game-card" data-game-index="${index}" role="button" tabindex="0" aria-expanded="false">
-                        <div class="game-image-wrapper">
-                            <img src="${game.image}" alt="${game.name} slot game preview" class="game-image" loading="lazy">
-                        </div>
-                        <div class="game-info-compact">
-                            <div class="game-info-left">
-                                <h5 class="game-title">${game.name}</h5>
-                                <span class="game-rtp-compact">RTP: ${game.rtp}</span>
+            <div class="top-games-container">
+                <div class="games-scroll-container">
+                    ${allGames.map((game, index) => `
+                        <article class="game-card-compact" data-game-index="${index}">
+                            <div class="game-thumb-wrapper">
+                                <img
+                                    src="${game.image}"
+                                    alt="${game.name} slot game"
+                                    class="game-thumb"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                                <span class="game-tag">${game.category || 'Slots'}</span>
+                                <span class="game-rtp-float">${game.rtp}</span>
                             </div>
-                            <button class="game-tap-indicator" aria-label="Tap for game details">
-                                Tap for details
-                            </button>
-                        </div>
-                        <div class="game-description-hidden">
-                            <p>${game.description}</p>
-                            <a href="#" class="game-play-link" data-casino="${game.casinoName}">
-                                Play at ${game.casinoName} →
-                            </a>
-                        </div>
-                    </div>
-                `).join('')}
+                            <div class="game-info-section">
+                                <div class="game-info-header">
+                                    <div class="game-title-left">
+                                        <h3 class="game-name">${game.name}</h3>
+                                        <p class="game-provider">by ${game.provider}</p>
+                                    </div>
+                                    <div class="game-casino-badge" style="color: ${game.casinoColor}; background: ${game.casinoColor}15;">${game.casinoName}</div>
+                                </div>
+                                <div class="game-desc-wrapper">
+                                    <p class="game-desc" data-full-text="${game.description.replace(/"/g, '&quot;')}" data-short-text="${game.description.length > 120 ? game.description.substring(0, 120).replace(/"/g, '&quot;') : game.description.replace(/"/g, '&quot;')}">${game.description.length > 120 ? game.description.substring(0, 120) + '... <span class="game-read-more">Read more</span>' : game.description}</p>
+                                </div>
+                                <a href="#" class="game-cta" data-casino="${game.casinoName}" aria-label="Play ${game.name} at ${game.casinoName}">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <path d="M8 5v14l11-7L8 5z" fill="currentColor"/>
+                                    </svg>
+                                    Play Now
+                                </a>
+                            </div>
+                        </article>
+                    `).join('')}
+                </div>
             </div>
         </section>
     `;
 
     container.innerHTML = gamesHTML;
 
-    // Re-attach game card interactions for this section
-    container.querySelectorAll('.game-card').forEach(card => {
-        card.addEventListener('click', handleGameCardClick);
-        card.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                handleGameCardClick.call(card, e);
-            }
-        });
+    // Initialize game card interactions
+    initGameCardInteractions();
+}
+
+/**
+ * Initialize game card touch/click interactions for mobile
+ */
+function initGameCardInteractions() {
+    const gameCards = document.querySelectorAll('.game-card-compact');
+
+    gameCards.forEach(card => {
+        // Add touch feedback
+        card.addEventListener('touchstart', () => {
+            card.style.transform = 'scale(0.99)';
+        }, { passive: true });
+
+        card.addEventListener('touchend', () => {
+            card.style.transform = '';
+        }, { passive: true });
     });
 }
 
 /**
+ * Handle read more/show less clicks
+ */
+function handleReadMoreClick(e) {
+    if (e.target.classList.contains('game-read-more')) {
+        e.preventDefault();
+        e.stopPropagation();
+        const desc = e.target.closest('.game-desc');
+        const fullText = desc.dataset.fullText;
+        const shortText = desc.dataset.shortText;
+        const isExpanded = desc.classList.contains('expanded');
+
+        if (isExpanded) {
+            // Collapse: Show short version
+            desc.classList.remove('expanded');
+            desc.innerHTML = `${shortText}... <span class="game-read-more">Read more</span>`;
+        } else {
+            // Expand: Show full version
+            desc.classList.add('expanded');
+            desc.innerHTML = `${fullText} <span class="game-read-more">Show less</span>`;
+        }
+    }
+}
+
+/**
  * Render Top Promos for January section
+ * Premium card design with background image treatment
  */
 function renderTopPromos() {
     const container = document.getElementById('topPromosSection');
@@ -502,42 +561,124 @@ function renderTopPromos() {
             <h2 class="section-title">Top Promos for January</h2>
             <div class="promos-grid">
                 ${allPromos.map((promo, index) => `
-                    <div class="promotion-card">
-                        <div class="promo-header">
-                            <div class="promo-casino-badge">
-                                <span class="promo-casino-logo">${promo.casinoLogo}</span>
-                                <span class="promo-casino-name">${promo.casinoName}</span>
-                            </div>
-                            <div class="promo-badge">
-                                <span aria-hidden="true">${icons.gift}</span>
-                                ACTIVE PROMO
-                            </div>
+                    <article class="promo-card" data-promo-index="${index}">
+                        <!-- Background Image Layer -->
+                        <div class="promo-bg">
+                            <img
+                                src="https://images.unsplash.com/photo-1633158829875-e5316a358c6f?w=800&h=600&fit=crop&q=80"
+                                srcset="https://images.unsplash.com/photo-1633158829875-e5316a358c6f?w=400&h=300&fit=crop&q=70 400w,
+                                        https://images.unsplash.com/photo-1633158829875-e5316a358c6f?w=600&h=450&fit=crop&q=75 600w,
+                                        https://images.unsplash.com/photo-1633158829875-e5316a358c6f?w=800&h=600&fit=crop&q=80 800w"
+                                sizes="(max-width: 767px) 100vw, 50vw"
+                                alt=""
+                                class="promo-bg-image"
+                                loading="lazy"
+                                decoding="async"
+                            >
                         </div>
-                        <h4 class="promo-title">${promo.title}</h4>
-                        <div class="promo-subtitle">${promo.subtitle}</div>
-                        <p class="promo-description">${promo.description}</p>
-                        <div class="prize-grid">
-                            ${promo.prizes.map(prize => `
-                                <div class="prize-item">
-                                    <div class="prize-place">${prize.place}</div>
-                                    <div class="prize-amount">${prize.amount}</div>
+                        <!-- Gradient Overlay -->
+                        <div class="promo-overlay"></div>
+                        <!-- Top Accent Bar -->
+                        <div class="promo-accent"></div>
+
+                        <!-- Content -->
+                        <div class="promo-body">
+                            <!-- Badge Row: Casino + Status -->
+                            <div class="promo-badge-row">
+                                <div class="casino-chip">
+                                    <span class="casino-chip-icon" aria-hidden="true">${promo.casinoLogo}</span>
+                                    <span class="casino-chip-name">${promo.casinoName}</span>
                                 </div>
-                            `).join('')}
+                                <div class="promo-status">
+                                    <span class="promo-status-dot" aria-hidden="true"></span>
+                                    <span>LIVE</span>
+                                </div>
+                            </div>
+
+                            <!-- Main Content -->
+                            <div class="promo-main">
+                                <h3 class="promo-headline">${promo.title}</h3>
+                                <p class="promo-tagline">${promo.subtitle}</p>
+                                <p class="promo-copy">${promo.description}</p>
+
+                                <!-- Prize Chips -->
+                                <div class="prizes-row" role="list" aria-label="Prize breakdown">
+                                    ${promo.prizes.map((prize, i) => `
+                                        <div class="prize-chip ${i === 0 ? 'first' : ''}" role="listitem">
+                                            <div class="prize-rank">${prize.place}</div>
+                                            <div class="prize-value">${prize.amount}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+
+                            <!-- Footer Actions -->
+                            <div class="promo-actions">
+                                <button class="promo-join-btn" data-casino="${promo.casinoName}" aria-label="Join promotion at ${promo.casinoName}">
+                                    Join Now
+                                </button>
+                                <div class="promo-timer" aria-label="Promotion ends ${promo.endDate}">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                        <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    </svg>
+                                    <span>${promo.endDate}</span>
+                                </div>
+                            </div>
+
+                            <!-- Legal -->
+                            <p class="promo-legal">Full T&Cs Apply</p>
                         </div>
-                        <div class="promo-footer">
-                            <span class="promo-deadline">
-                                <span aria-hidden="true">${icons.clock}</span>
-                                ${promo.endDate}
-                            </span>
-                            <button class="promo-cta" data-casino="${promo.casinoName}">Join at ${promo.casinoName}</button>
-                        </div>
-                    </div>
+                    </article>
                 `).join('')}
             </div>
         </section>
     `;
 
     container.innerHTML = promosHTML;
+
+    // Initialize promo button handlers
+    initPromoButtons();
+}
+
+/**
+ * Initialize promo join button handlers
+ */
+function initPromoButtons() {
+    document.querySelectorAll('.promo-join-btn').forEach(btn => {
+        btn.addEventListener('click', handlePromoJoin);
+    });
+}
+
+/**
+ * Handle promo join button click
+ */
+function handlePromoJoin(e) {
+    const btn = e.currentTarget;
+    const casinoName = btn.dataset.casino;
+    const originalText = btn.textContent;
+
+    // Animate button
+    btn.textContent = 'Joining...';
+    btn.disabled = true;
+    btn.style.opacity = '0.8';
+
+    // Simulate API call
+    setTimeout(() => {
+        btn.textContent = 'Joined!';
+        btn.style.background = 'var(--success)';
+        btn.style.color = 'white';
+
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.disabled = false;
+            btn.style.opacity = '1';
+            btn.style.background = '';
+            btn.style.color = '';
+        }, 2000);
+    }, 800);
+
+    console.log(`Joining promo at: ${casinoName}`);
 }
 
 /**
@@ -787,6 +928,9 @@ document.addEventListener('DOMContentLoaded', () => {
     renderTopPromos();
     initDarkMode();
     initScrollAnimations();
+
+    // Add read more click handler (single event listener for all read more links)
+    document.addEventListener('click', handleReadMoreClick);
 
     // Log initialization
     console.log('Sweepstakes Casino Listing initialized successfully');
